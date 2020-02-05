@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int number_of_runs = 1000000;
+        int number_of_runs = 10000;
         int airplaneSize = 100;
 
         int failed = 0;
