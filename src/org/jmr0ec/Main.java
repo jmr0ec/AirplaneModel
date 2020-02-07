@@ -9,11 +9,13 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int number_of_runs = 1;
-        int airplaneSize = 100;
+        int number_of_runs = 1000;
+        int airplaneSize = 150;
 
         int failed = 0;
         int success = 0;
+
+        int maxThreads = Runtime.getRuntime().availableProcessors());
 
         for(int count = 0; count < number_of_runs; count++){
             Boolean result = false;
@@ -30,6 +32,9 @@ public class Main {
 
             airplane.takeSeat(randomSeatNumber);
 
+            int gotCorrectSeat = 0;
+            int gotRandomSeat = 1;
+
             for(int i = 1; i < airplaneSize; i++){
                 int seatNumber = seatList[i];
 
@@ -40,9 +45,11 @@ public class Main {
                     }
                     airplane.takeSeat(newSeatNumber);
                     result = false;
+                    gotRandomSeat++;
                 }else{
                     airplane.takeSeat(seatNumber);
                     result = true;
+                    gotCorrectSeat++;
                 }
             }
 
@@ -50,9 +57,6 @@ public class Main {
                 success++;
             }else{
                 failed++;
-            }
-            if(count % 100000 == 0 && count != 0){
-                System.out.println("Count: " + count);
             }
         }
         System.out.println("Successes: " + success);
